@@ -127,14 +127,22 @@ function getPersonByName(people, first, last) {
   if (!people.length) {
     throw "The `people` array is empty.";
   }
-    
+
   const person = people.find(
     (a) => a.first_name === first && a.last_name === last
   );
-//   if (!person) {
-//     throw "Person with given name could not be found.";
-//   }
+  if (!person) {
+    throw "Person with given name could not be found.";
+  }
   return person;
+  //   const person = people.find(
+  //     ({ first_name }, { last_name }) =>
+  //       `${first_name}` === first && `${last_name}` === last
+  //   );
+  //   if (!person) {
+  //     throw "Person with given name could not be found.";
+  //   }
+  //   return person;
 }
 
 /* 
@@ -151,7 +159,12 @@ function getPersonByName(people, first, last) {
     @returns {Boolean} - Whether we've found the IP address.
 */
 
-function ipIsPresent(people, ipAddress) {}
+function ipIsPresent(people, ipAddress) {
+  if (!people.length) {
+    throw "The `people` array is empty.";
+  }
+  return people.some(({ ip_address }) => ip_address === ipAddress);
+}
 
 /* 
     An IP address is composed of four numbers, each separated by a dot. Each of those numbers will be between 1 and 255, with some additional rules that we won't get into here. We want to find all people that have IP addresses where all of those numbers in their IP address are greater than 100.
@@ -172,7 +185,14 @@ function ipIsPresent(people, ipAddress) {}
     @returns {Object[]} - Array of people matching the conditions in the description.
 */
 
-function findLargeOctets(people) {}
+function findLargeOctets(people) {
+  if (!people.length) {
+    throw "The `people` array is empty.";
+  }
+  const large = people.filter(({ ip_address }) => ip_address).split("");
+  large.every(({ ip_address }) => ip_address.split("") > 100);
+  return large;
+}
 
 module.exports = {
   filterDataByEmployer,
