@@ -189,9 +189,9 @@ function findLargeOctets(people) {
   if (!people.length) {
     throw "The `people` array is empty.";
   }
-  const large = people.filter(({ ip_address }) => ip_address).split("");
-  large.every(({ ip_address }) => ip_address.split("") > 100);
-  return large;
+  return people.filter((person) =>
+    person.ip_address.split(".").every((octet) => octet >= 100)
+  );
 }
 
 module.exports = {
