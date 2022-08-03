@@ -49,9 +49,9 @@ function filterDataByEmployer(people, empl) {
   if (!people.length || people.length === undefined) {
     throw "The `people` array is empty.";
   }
-//   if (!empl.length) {
-//     throw "Error";
-//   }
+  //   if (!empl.length) {
+  //     throw "Error";
+  //   }
   return people.filter(({ employer }) => employer === empl);
 }
 
@@ -68,7 +68,19 @@ function filterDataByEmployer(people, empl) {
     @returns {Object[]} - Array of objects matching the pattern in this problem description.
 */
 
-function getCreditCardDetails(people) {}
+function getCreditCardDetails(people) {
+  if (!people.length || people.length === undefined) {
+    throw "The `people` array is empty.";
+  }
+
+  return people.map((person) => {
+    return {
+      name: `${person.first_name} ${person.last_name}`,
+      ...person.credit_card,
+      // type: `${}`
+    };
+  });
+}
 
 /* 
     Returns a unique array of employers, sorted alphabetically from A-Z.
