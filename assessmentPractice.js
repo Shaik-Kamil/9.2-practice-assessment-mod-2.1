@@ -123,7 +123,19 @@ function getAllEmployers(people) {
     @returns {Object} - Person with the given first and last name.
 */
 
-function getPersonByName(people, first, last) {}
+function getPersonByName(people, first, last) {
+  if (!people.length) {
+    throw "The `people` array is empty.";
+  }
+    
+  const person = people.find(
+    (a) => a.first_name === first && a.last_name === last
+  );
+//   if (!person) {
+//     throw "Person with given name could not be found.";
+//   }
+  return person;
+}
 
 /* 
     Determines whether any person has a given IP.
